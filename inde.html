@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>¿San Valentín? 💖</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        padding: 35px 25px;
+        border-radius: 25px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        text-align: center;
+        width: 320px;
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        margin-top: 0;
+        color: #ff4d6d;
+    }
+
+    p {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    .buttons {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        position: relative;
+    }
+
+    button {
+        border: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    #yes {
+        background: #ff4d6d;
+        color: white;
+        box-shadow: 0 5px 15px rgba(255,77,109,0.5);
+    }
+
+    #yes:hover {
+        transform: scale(1.15);
+    }
+
+    #no {
+        background: #eee;
+        position: absolute;
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 20px;
+        animation: float 6s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(100vh) scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-10vh) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    .pulse {
+        font-size: 40px;
+        animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+    }
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<div class="card">
+    <div class="pulse">💖</div>
+    <h1>Hey María</h1>
+    <p>Alex tiene una pregunta muy importante…</p>
+    <p><strong>¿Quieres ser mi San Valentín?</strong> 🥰</p>
+
+    <div class="buttons">
+        <button id="yes">Sí 💘</button>
+        <button id="no">No 😳</button>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 250 - 125;
+        const y = Math.random() * 200 - 100;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+        document.body.innerHTML = `
+        <div style="
+            height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:linear-gradient(135deg,#ff4d6d,#ff758c);
+            color:white;
+            font-family:Segoe UI;
+            text-align:center;
+            animation: fadeIn 1s;">
+            <div>
+                <h1>Sabía que dirías que sí 💕</h1>
+                <p>Este San Valentín es nuestro 😘</p>
+                <div style="font-size:70px;">💖💖💖</div>
+            </div>
+        </div>`;
+    });
+
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
