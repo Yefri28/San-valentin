@@ -1,0 +1,613 @@
+/* FONDO */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: radial-gradient(circle at top, #0b132b, #000);
+}
+
+/* CONTENEDOR GENERAL */
+.planta {
+    position: relative;
+    width: 300px;
+    height: 500px;
+}
+
+.planta {
+    position: relative;
+    z-index: 1;
+}
+
+.flor {
+    z-index: 20;
+    /* flor arriba */
+}
+
+
+/* FLOR (CENTRADA) */
+.flor {
+    position: absolute;
+    top: 120px;
+    ;
+    left: 50%;
+    width: 260px;
+    height: 260px;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* ENVOLTORIO DEL PÉTALO (GIRA) */
+.petalo-wrap {
+    pointer-events: none;
+    /* 🔴 permite clic al centro */
+}
+
+/* PÉTALO (SE ABRE) */
+.petalo {
+    width: 60px;
+    height: 120px;
+    background: linear-gradient(to top, #7dd3fc, #bae6fd);
+    border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+    transform: translate(-50%, -100%) scale(0);
+    transform-origin: bottom center;
+
+    animation:
+        abrir 1.5s ease-out forwards,
+        colores 6s infinite alternate;
+}
+
+.petalo {
+    animation:
+        abrir 1.5s ease-out forwards,
+        colores 6s infinite alternate;
+}
+
+.animar .petalo {
+    animation: abrir 1.5s ease-out forwards;
+}
+
+
+.petalo-wrap {
+    --delay: 0s;
+}
+
+.petalo-wrap:nth-child(1) .petalo {
+    animation-delay: 0s, 0s;
+}
+
+.petalo-wrap:nth-child(2) .petalo {
+    animation-delay: .2s, 0s;
+}
+
+.petalo-wrap:nth-child(3) .petalo {
+    animation-delay: .4s, 0s;
+}
+
+.petalo-wrap:nth-child(4) .petalo {
+    animation-delay: .6s, 0s;
+}
+
+.petalo-wrap:nth-child(5) .petalo {
+    animation-delay: .8s, 0s;
+}
+
+.petalo-wrap:nth-child(6) .petalo {
+    animation-delay: 1s, 0s;
+}
+
+.petalo-wrap:nth-child(7) .petalo {
+    animation-delay: 1.2s, 0s;
+}
+
+.petalo-wrap:nth-child(8) .petalo {
+    animation-delay: 1.4s, 0s;
+}
+
+.petalo-wrap:nth-child(9) .petalo {
+    animation-delay: 1.6s, 0s;
+}
+
+.petalo-wrap:nth-child(10) .petalo {
+    animation-delay: 1.8s, 0s;
+}
+
+.petalo-wrap:nth-child(11) .petalo {
+    animation-delay: 2s, 0s;
+}
+
+.petalo-wrap:nth-child(12) .petalo {
+    animation-delay: 2.2s, 0s;
+}
+
+/* CENTRO */
+.centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    background: radial-gradient(circle, #fff6a5, #ffb300);
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    /* 🔴 por encima de TODO */
+
+    animation: brillo 2.5s infinite ease-in-out;
+}
+
+.centro:hover {
+    box-shadow: 0 0 30px rgba(255, 200, 0, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.tallo {
+    position: absolute;
+    top: 260px;
+    left: 50%;
+    width: 14px;
+    height: 320px;
+
+    background: linear-gradient(#1b5e20, #4caf50);
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+    z-index: 5;
+
+    position: relative;
+    /* 🔴 CLAVE ABSOLUTA */
+}
+
+.hoja {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(to top right, #2e7d32, #66bb6a);
+    border-radius: 100% 0 100% 0;
+
+    left: 50%;
+    /* centro del tallo */
+    transform-origin: 0% 50%;
+    opacity: 0;
+
+    animation: crecerHoja 1.2s ease-out forwards;
+}
+
+.hoja.izq {
+    top: 120px;
+    --rot: -2deg;
+    transform: translateX(-100%);
+    animation-delay: 1.8s;
+}
+
+.hoja.der {
+    top: 180px;
+    --rot: 210deg;
+    /* 🔴 gira hacia el otro lado */
+    transform: translateX(0%);
+    animation-delay: 2.2s;
+}
+
+.hoja::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 4px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+}
+
+/* ANIMACIÓN */
+@keyframes abrir {
+    to {
+        transform: translate(-50%, -100%) scale(1);
+    }
+}
+
+@keyframes cambiarColor {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes colores {
+    0% {
+        background: #ffb6c1;
+    }
+
+    /* rosa */
+    25% {
+        background: #d8b4fe;
+    }
+
+    /* lila */
+    50% {
+        background: #93c5fd;
+    }
+
+    /* azul */
+    75% {
+        background: #86efac;
+    }
+
+    /* verde */
+    100% {
+        background: #fde68a;
+    }
+
+    /* amarillo */
+}
+
+@keyframes brillo {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 200, 0, .4);
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 200, 0, .9);
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(255, 200, 0, .4);
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes fondoAnimado {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes aparecerTexto {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecerTexto {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes crecerHoja {
+    0% {
+        transform: translateX(var(--x, 0)) scale(0) rotate(var(--rot));
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateX(var(--x, 0)) scale(1.1) rotate(var(--rot));
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(var(--x, 0)) scale(1) rotate(var(--rot));
+        opacity: 1;
+    }
+}
+
+@keyframes flotar {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-200px);
+    }
+}
+
+@keyframes fondoAnimado {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes caer {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(120vh) rotate(360deg);
+    }
+}
+
+@keyframes caerCorazon {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.corazones span {
+    position: absolute;
+    top: -10%;
+    font-size: 20px;
+    color: rgba(255, 80, 120, 0.7);
+    animation: caerCorazon linear infinite;
+}
+
+.corazones span:nth-child(1) {
+    left: 10%;
+    animation-duration: 10s;
+    font-size: 16px;
+}
+
+.corazones span:nth-child(2) {
+    left: 25%;
+    animation-duration: 12s;
+    font-size: 22px;
+}
+
+.corazones span:nth-child(3) {
+    left: 45%;
+    animation-duration: 9s;
+}
+
+.corazones span:nth-child(4) {
+    left: 65%;
+    animation-duration: 11s;
+    font-size: 18px;
+}
+
+.corazones span:nth-child(5) {
+    left: 80%;
+    animation-duration: 13s;
+    font-size: 24px;
+}
+
+.corazones span:nth-child(6) {
+    left: 90%;
+    animation-duration: 8s;
+}
+
+.petalos span {
+    position: absolute;
+    top: -10%;
+    width: 18px;
+    height: 18px;
+    background: pink;
+    border-radius: 100% 0 100% 0;
+    opacity: 0.7;
+
+    animation: caer 12s linear infinite;
+}
+
+.petalos span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.petalos span:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.petalos span:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.petalos span:nth-child(4) {
+    left: 70%;
+    animation-delay: 1s;
+}
+
+.petalos span:nth-child(5) {
+    left: 90%;
+    animation-delay: 3s;
+}
+
+.particulas::before,
+.particulas::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.6) 1.5px, transparent 2px);
+    background-size: 120px 120px, 80px 80px;
+    animation: flotar 25s linear infinite;
+    pointer-events: none;
+}
+
+.particulas::after {
+    animation-duration: 40s;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(270deg, #ffdde1, #ee9ca7, #a1c4fd, #c2e9fb);
+    background-size: 600% 600%;
+    animation: fondoAnimado 18s ease infinite;
+}
+
+@keyframes fondoAnimado {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(270deg, #ffdde1, #ee9ca7, #a1c4fd, #c2e9fb);
+    background-size: 800% 800%;
+    animation: fondoAnimado 18s ease infinite;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    overflow: hidden;
+}
+
+.fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    background-size: 400% 400%;
+    animation: fondoAnimado 15s ease infinite;
+    z-index: -2;
+}
+
+.mensaje {
+    position: absolute;
+    bottom: 40px;
+    font-size: 24px;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    opacity: 0;
+    animation: aparecerTexto 2s ease forwards;
+    animation-delay: 4s;
+    /* aparece cuando todo terminó */
+}
+
+.mensaje-box {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+
+    text-align: center;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 22px 26px;
+    border-radius: 18px;
+
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    z-index: 50;
+}
+
+.mensaje {
+    margin: 0;
+    color: white;
+    font-size: 22px;
+    line-height: 1.6;
+    /* 🔴 interlineado */
+    font-family: 'Segoe UI', sans-serif;
+    text-shadow:
+        0 0 6px rgba(255, 255, 255, .8),
+        0 0 14px rgba(255, 180, 255, .6);
+}
+
+.btn-reiniciar {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #333;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.btn-reiniciar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 180, 200, .8);
+}
+
+.mensaje button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: #ff69b4;
+    color: white;
+    box-shadow: 0 0 10px #ff69b4;
+}
+
+.mensaje button:hover {
+    background: #ff85c1;
+}
+
+.mensaje-box {
+    pointer-events: none;
+    /* 🔴 CLAVE ABSOLUTA */
+}
+
+.centro {
+    pointer-events: auto;
+    z-index: 1000;
+}

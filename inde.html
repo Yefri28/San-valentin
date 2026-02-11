@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<style>
+    /* FONDO */
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    background:radial-gradient(circle at top,#0b132b,#000);
+}
+
+/* CONTENEDOR GENERAL */
+.planta{
+    position:relative;
+    width:300px;
+    height:500px;
+}
+
+/* FLOR (CENTRADA) */
+.flor{
+    position:absolute;
+    top:0;
+    left:50%;
+    width:260px;
+    height:260px;
+    transform:translateX(-50%);
+}
+
+/* ENVOLTORIO DEL PÉTALO (GIRA) */
+.petalo-wrap{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:0;
+    height:0;
+    transform:rotate(var(--rot));
+}
+
+/* PÉTALO (SE ABRE) */
+.petalo{
+    width:70px;
+    height:120px;
+    border-radius:50%;
+    transform:translate(-50%, -100%) scale(0);
+    transform-origin:bottom center;
+    animation:
+        abrir 1.5s ease-out forwards,
+        colores 6s infinite alternate;
+}
+
+.petalo-wrap{
+    --delay: 0s;
+}
+
+.petalo-wrap:nth-child(1) .petalo { animation-delay: 0s, 0s; }
+.petalo-wrap:nth-child(2) .petalo { animation-delay: .2s, 0s; }
+.petalo-wrap:nth-child(3) .petalo { animation-delay: .4s, 0s; }
+.petalo-wrap:nth-child(4) .petalo { animation-delay: .6s, 0s; }
+.petalo-wrap:nth-child(5) .petalo { animation-delay: .8s, 0s; }
+.petalo-wrap:nth-child(6) .petalo { animation-delay: 1s, 0s; }
+.petalo-wrap:nth-child(7) .petalo { animation-delay: 1.2s, 0s; }
+.petalo-wrap:nth-child(8) .petalo { animation-delay: 1.4s, 0s; }
+.petalo-wrap:nth-child(9) .petalo { animation-delay: 1.6s, 0s; }
+.petalo-wrap:nth-child(10) .petalo{ animation-delay: 1.8s, 0s; }
+.petalo-wrap:nth-child(11) .petalo{ animation-delay: 2s, 0s; }
+.petalo-wrap:nth-child(12) .petalo{ animation-delay: 2.2s, 0s; }
+
+/* CENTRO */
+.centro{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:70px;
+    height:70px;
+    background:radial-gradient(circle,#ffd000,#ff8c00);
+    border-radius:50%;
+    transform:translate(-50%, -50%);
+    z-index:10;
+}
+
+/* TALLO */
+.tallo{
+    position:absolute;
+    top:240px;
+    left:50%;
+    width:14px;
+    height:260px;
+    background:linear-gradient(#1b5e20,#4caf50);
+    border-radius:10px;
+    transform:translateX(-50%);
+}
+
+/* HOJAS */
+.hoja{
+    position:absolute;
+    width:90px;
+    height:50px;
+    background:linear-gradient(to right,#2e7d32,#66bb6a);
+    border-radius:50%;
+}
+
+.hoja.izq{
+    top:405px;
+    left:35%;
+    transform:rotate(-30deg);
+}
+
+.hoja.der{
+    top:385px;
+    left:50%;
+    transform:rotate(294deg);
+}
+
+/* ANIMACIÓN */
+@keyframes abrir{
+    to{
+        transform:translate(-50%, -100%) scale(1);
+    }
+}
+
+@keyframes colores{
+    0%   { background:#ffb6c1; }
+    25%  { background:#c4b5fd; }
+    50%  { background:#93c5fd; }
+    75%  { background:#86efac; }
+    100% { background:#fde68a; }
+}
+
+</style>
+<head>
+<meta charset="UTF-8">
+<title>Flor Animada</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="fondo"></div>
+
+<div class="planta animar" id="planta">
+
+  <!-- TEXTO ARRIBA -->
+  <div class="mensaje-box">
+    <p class="mensaje">
+      ¿Quieres ser mi San Valentín este 2026  
+      y todos los años que vienen? 💖
+    </p>
+  </div>
+
+  <div class="particulas"></div>
+    <div class="petalos">
+    <span></span><span></span><span></span>
+    <span></span><span></span>
+</div>
+
+<div class="corazones">
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+</div>
+
+
+  <!-- FLOR -->
+  <div class="flor">
+
+    <!-- PÉTALOS -->
+    <div class="petalo-wrap" style="--rot:0deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:30deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:60deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:90deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:120deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:150deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:180deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:210deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:240deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:270deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:300deg"><div class="petalo"></div></div>
+    <div class="petalo-wrap" style="--rot:330deg"><div class="petalo"></div></div>
+
+    <button class="centro" onclick="reflorecer()" aria-label="Reflorecer"></button>
+  </div>
+
+<div class="tallo">
+  <div class="hoja izq"></div>
+  <div class="hoja der"></div>
+</div>
+
+<!-- MÚSICA -->
+<audio autoplay loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function reflorecer(){
+  const petalos = document.querySelectorAll(".petalo");
+
+  petalos.forEach(p => {
+    p.style.animation = "none";
+    p.offsetHeight; // fuerza reinicio
+    p.style.animation = "";
+  });
+}
+</script>
+
+</body>
+</html>
